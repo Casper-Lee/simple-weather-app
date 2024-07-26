@@ -25,7 +25,7 @@ A simple weather app using NextJS.
 
 2. Implement the "Forecast" page to display the next 4 days of weather information similar to the "Now" page. You can also improve it as you see fit.
 
- Note: The forecast data can be found at <https://birdsofaweather.netlify.app/api/weather/forecast>
+Note: The forecast data can be found at <https://birdsofaweather.netlify.app/api/weather/forecast>
 
 ## Additional Info
 
