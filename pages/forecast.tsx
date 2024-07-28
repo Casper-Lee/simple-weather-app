@@ -3,20 +3,20 @@ import Card from '@/components/card';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-export interface WeatherData {
-  area: string;
-  forecast: string;
+export interface ForecastData {
+  date: string;
+  prediction: string;
 }
 
-export default function Now() {
+export default function Forecast() {
   const router = useRouter();
-  const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
+  const [forecastData, setForecastData] = useState<ForecastData[]>([]);
 
   useEffect(() => {
     const getWeatherData = async () => {
-      const fetchResponse = await fetch('/api/now');
+      const fetchResponse = await fetch('/api/forecast');
       const responseJson = await fetchResponse.json();
-      setWeatherData(responseJson.items);
+      setForecastData(responseJson.items);
     };
 
     getWeatherData();
@@ -31,12 +31,12 @@ export default function Now() {
           </div>
           <div className="min-h-screen flex flex-col items-center justify-center">
             <h1 className="text-6xl text-center font-bold pb-24 text-gray-700">
-              What's it like outside?
+              Weather Forecast
             </h1>
             <div className="w-[60%] flex flex-row gap-4">
-              {weatherData.map((data, index) => (
+              {forecastData.map((data, index) => (
                 <Card
-                  cardType="weather"
+                  cardType="forecast"
                   key={index}
                   data={data}
                   additionalClassNames="flex-1"

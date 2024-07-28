@@ -20,7 +20,10 @@ export default function Home() {
             </h1>
             <div className="w-[50%] flex flex-row gap-24">
               <Button title="Now" onClick={() => router.push('/now')} />
-              <Button title="Forecast" onClick={() => {}} />
+              <Button
+                title="Forecast"
+                onClick={() => router.push('/forecast')}
+              />
             </div>
           </div>
         </div>
