@@ -1,8 +1,7 @@
 import Button from '@/components/button';
 import Card from '@/components/card';
+import { useGetWeatherForecast } from '@/hooks/reactQueryCustomHooks';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-
 export interface ForecastData {
   date: string;
   prediction: string;
@@ -10,17 +9,12 @@ export interface ForecastData {
 
 export default function Forecast() {
   const router = useRouter();
-  const [forecastData, setForecastData] = useState<ForecastData[]>([]);
 
-  useEffect(() => {
-    const getWeatherData = async () => {
-      const fetchResponse = await fetch('/api/forecast');
-      const responseJson = await fetchResponse.json();
-      setForecastData(responseJson.items);
-    };
+  const { data, isLoading } = useGetWeatherForecast();
 
-    getWeatherData();
-  }, []);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -34,7 +28,7 @@ export default function Forecast() {
               Weather Forecast
             </h1>
             <div className="w-[60%] flex flex-row gap-4">
-              {forecastData.map((data, index) => (
+              {data.items.map((data: ForecastData, index: number) => (
                 <Card
                   cardType="forecast"
                   key={index}
