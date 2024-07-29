@@ -31,7 +31,7 @@ export const useGetNowWeather = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['now'],
     queryFn: getNowWeather,
-    retry: false,
+    retry: 10,
   });
 
   return { data, isLoading, isError };

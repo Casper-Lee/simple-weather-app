@@ -26,7 +26,10 @@ export default function Now() {
             ></Button>
           </div>
           <div className="min-h-screen flex flex-col items-center justify-center">
-            <h1 className="text-6xl text-center font-bold pb-24 text-gray-700">
+            <h1
+              data-testid="header"
+              className="text-6xl text-center font-bold pb-24 text-gray-700"
+            >
               What's it like outside?
             </h1>
             <div className="w-[60%] flex flex-row gap-4 justify-center">
