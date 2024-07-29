@@ -3,11 +3,13 @@ import React from 'react';
 interface ButtonProps {
   title: string;
   onClick: () => void;
+  testId: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ title, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ title, onClick, testId }) => {
   return (
     <button
+      data-testid={testId}
       className="bg-gray-700 hover:bg-gray-500 text-white text-3xl font-bold py-4 px-6 rounded-full flex-1"
       onClick={onClick}
     >
