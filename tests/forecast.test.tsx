@@ -10,38 +10,61 @@ jest.mock('../hooks/weatherCustomHooks', () => ({
 }));
 
 describe('Forecast', () => {
-  it('renders a heading', () => {
+  it('renders the page with the correct data', () => {
     (useGetWeatherForecast as jest.Mock).mockReturnValue({
       data: {
         items: [
           {
             date: '2024-07-30',
-            prediction: 'Late Morning and early afternoon showers',
+            prediction: 'Late Morning showers',
           },
           {
             date: '2024-07-31',
-            prediction: 'Late Morning and early afternoon showers',
+            prediction: 'Perfect Weather',
           },
         ],
       },
       isLoading: false,
+      isError: false,
     });
 
     render(<Forecast />);
 
-    const heading = screen.getByTestId('header');
+    expect(screen.getByTestId('header')).toBeInTheDocument();
+    expect(screen.getByTestId('back-button')).toBeInTheDocument();
 
-    expect(heading).toBeInTheDocument();
+    const forecastCards = screen.getAllByTestId('forecast-card');
+    expect(forecastCards).toHaveLength(2);
+
+    expect(screen.getByText('2024-07-30')).toBeInTheDocument();
+    expect(screen.getByText('Late Morning showers')).toBeInTheDocument();
+    expect(screen.getByText('2024-07-31')).toBeInTheDocument();
+    expect(screen.getByText('Perfect Weather')).toBeInTheDocument();
   });
 
-  it('displays a loading is isLoading is true', () => {
+  it('displays a loading if isLoading is true', () => {
     (useGetWeatherForecast as jest.Mock).mockReturnValue({
       data: {},
       isLoading: true,
+      isError: false,
     });
 
     render(<Forecast />);
     const loading = screen.getByTestId('loading-spinner');
-    expect(loading).toBeTruthy();
+    expect(loading).toBeInTheDocument();
+  });
+
+  it('displays a try again button if isError is true', () => {
+    (useGetWeatherForecast as jest.Mock).mockReturnValue({
+      data: {},
+      isLoading: true,
+      isError: true,
+    });
+
+    render(<Forecast />);
+    expect(
+      screen.getByText('Oops Something went wrong! Please try again.'),
+    ).toBeInTheDocument();
+    expect(screen.getByTestId('refresh-button')).toBeInTheDocument();
   });
 });

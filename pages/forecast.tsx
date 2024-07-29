@@ -18,7 +18,11 @@ export default function Forecast() {
       <main>
         <div className="bg-[url('./public/background.jpg')] h-screen bg-cover bg-center">
           <div className="absolute left-4 top-4">
-            <Button title="back" onClick={() => router.push('/')}></Button>
+            <Button
+              testId="back-button"
+              title="back"
+              onClick={() => router.push('/')}
+            ></Button>
           </div>
           <div className="min-h-screen flex flex-col items-center justify-center">
             <h1
@@ -33,6 +37,7 @@ export default function Forecast() {
               ) : (
                 data.items.map((data: ForecastData, index: number) => (
                   <Card
+                    testId="forecast-card"
                     cardType="forecast"
                     key={index}
                     data={data}
@@ -43,9 +48,10 @@ export default function Forecast() {
               {isError && (
                 <div className="flex flex-col justify-center">
                   <p className="text-xl	 mb-4">
-                    Oops Something went wrong! Please try again
+                    Oops Something went wrong! Please try again.
                   </p>
                   <Button
+                    testId="refresh-button"
                     title="Try Again"
                     onClick={() => router.reload()}
                   ></Button>

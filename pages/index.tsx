@@ -19,8 +19,13 @@ export default function Home() {
               Simple Weather App
             </h1>
             <div className="w-[50%] flex flex-row gap-24">
-              <Button title="Now" onClick={() => router.push('/now')} />
               <Button
+                testId="now-button"
+                title="Now"
+                onClick={() => router.push('/now')}
+              />
+              <Button
+                testId="forecast-button"
                 title="Forecast"
                 onClick={() => router.push('/forecast')}
               />

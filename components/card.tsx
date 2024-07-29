@@ -12,9 +12,13 @@ type CardDataProps =
       data: ForecastData;
     };
 
-type CardProps = { additionalClassNames?: string } & CardDataProps;
+type CardProps = {
+  additionalClassNames?: string;
+  testId: string;
+} & CardDataProps;
 
 const Card: React.FC<CardProps> = ({
+  testId,
   cardType,
   data,
   additionalClassNames,
@@ -24,6 +28,7 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div
+      data-testid={testId}
       className={`opacity-80 bg-gray-300 max-w-sm rounded-lg shadow-md overflow-hidden ${additionalClassNames}`}
     >
       <div className="p-4">
