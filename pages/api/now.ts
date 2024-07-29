@@ -13,7 +13,7 @@ export default async function handler(
       const responseJson = await fetchResponse.json();
       res.status(200).json(responseJson);
     } else {
-      res.status(200).json({ items: [] });
+      res.status(500).json({ items: [] });
     }
   } else {
     res.status(400).json({ error: 'This API only supports GET requests' });
