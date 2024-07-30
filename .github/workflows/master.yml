@@ -5,6 +5,8 @@ name: master
 
 on:
   push:
+    branches:
+      - 'master'
 # challenge : i want to make sure that only when master branch committed, then it runs
 
 jobs:
@@ -16,6 +18,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 14.x
+      - run: npm run lint
+      - run: npm run test -- --runInBand
     # - challenge: do things that you think is necessary
 
   deploy:
