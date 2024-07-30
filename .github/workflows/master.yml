@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 14.x
+          node-version: 20.x
       - run: npm ci
       - run: npm run lint
       - run: npm run test -- --runInBand
@@ -32,7 +32,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 14.x
+          node-version: 20.x
       # challenge : assuming that we have an ECR called "simple-weather-app"
       # and we have a ECS/EKS deployment called "simple-weather-app"
       # do things that you think is necessary to create a docker image and push it to the ECR
