@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - 'master'
+      - 'fix/github-workflow'
 # challenge : i want to make sure that only when master branch committed, then it runs
 
 jobs:
@@ -24,6 +25,7 @@ jobs:
 
   deploy:
     name: deploy
+    needs: test
     runs-on: ubuntu:latest
     steps:
       - uses: actions/checkout@v4
