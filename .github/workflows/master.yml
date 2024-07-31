@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - 'master'
-      - 'fix/github-workflow'
 # challenge : i want to make sure that only when master branch committed, then it runs
 
 env:
