@@ -21,4 +21,4 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
 COPY package.json ./
 
-CMD ["npm", "start"]
+CMD ["sh", "-c", "PORT=80 npm start"]
