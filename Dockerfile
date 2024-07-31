@@ -16,9 +16,9 @@ RUN npm run build
 
 FROM node:20.11.1-alpine3.19 AS final
 
-COPY --from=builder /app/.next ./.next
+COPY --from=build /app/.next ./.next
 
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=build /app/node_modules ./node_modules
 
 COPY package.json ./
 
