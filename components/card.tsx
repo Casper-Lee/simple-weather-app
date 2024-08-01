@@ -1,11 +1,10 @@
-import { WeatherData } from '@/pages/now';
-import { ForecastData } from '@/pages/forecast';
+import { NowWeatherData, ForecastData } from '@/types/weather';
 import React from 'react';
 
 type CardDataProps =
   | {
       cardType: 'weather';
-      data: WeatherData;
+      data: NowWeatherData;
     }
   | {
       cardType: 'forecast';
