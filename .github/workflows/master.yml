@@ -80,10 +80,24 @@ jobs:
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
-      # challenge : assuming that we have an ECR called "simple-weather-app"
-      # and we have a ECS/EKS deployment called "simple-weather-app"
-      # do things that you think is necessary to create a docker image and push it to the ECR
-      # and deploy the application to the ECS / EKS (pick one)
-      # fyi : not necessary to create the dockerfile
+
+  e2e-test:
+    runs-on: ubuntu-latest
+    name: Cypress Test
+    needs: deploy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Cypress Test
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
+          command: npm run cypress:test
+        env:
+          BASE_URL: ${{secrets.BASE_URL}}
+    # challenge : assuming that we have an ECR called "simple-weather-app"
+    # and we have a ECS/EKS deployment called "simple-weather-app"
+    # do things that you think is necessary to create a docker image and push it to the ECR
+    # and deploy the application to the ECS / EKS (pick one)
+    # fyi : not necessary to create the dockerfile
 
   # any other steps that you think is necessary?
