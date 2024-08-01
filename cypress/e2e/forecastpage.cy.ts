@@ -1,3 +1,4 @@
+import { formatDate } from '../../utils/datetime';
 import { forecastWeatherData } from '../fixtures/weather';
 import { SELECTORS } from '../support/selectors';
 
@@ -11,7 +12,10 @@ describe('Forecast Page', () => {
       cy.get(SELECTORS.forecastpage.card)
         .eq(index)
         .within(() => {
-          cy.get(SELECTORS.card.cardTitle).should('contain', item.date);
+          cy.get(SELECTORS.card.cardTitle).should(
+            'contain',
+            formatDate(item.date),
+          );
           cy.get(SELECTORS.card.cardSubtitle).should(
             'contain',
             item.prediction,
@@ -45,7 +49,10 @@ describe('Forecast Page', () => {
       cy.get(SELECTORS.forecastpage.card)
         .eq(index)
         .within(() => {
-          cy.get(SELECTORS.card.cardTitle).should('contain', item.date);
+          cy.get(SELECTORS.card.cardTitle).should(
+            'contain',
+            formatDate(item.date),
+          );
           cy.get(SELECTORS.card.cardSubtitle).should(
             'contain',
             item.prediction,

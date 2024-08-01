@@ -40,9 +40,9 @@ describe('Forecast', () => {
     const forecastCards = screen.getAllByTestId('forecast-card');
     expect(forecastCards).toHaveLength(2);
 
-    expect(screen.getByText('2024-07-30')).toBeInTheDocument();
+    expect(screen.getByText('Tue 30 Jul')).toBeInTheDocument();
     expect(screen.getByText('Late Morning showers')).toBeInTheDocument();
-    expect(screen.getByText('2024-07-31')).toBeInTheDocument();
+    expect(screen.getByText('Wed 31 Jul')).toBeInTheDocument();
     expect(screen.getByText('Perfect Weather')).toBeInTheDocument();
   });
 
