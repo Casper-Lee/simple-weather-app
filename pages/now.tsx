@@ -2,12 +2,8 @@ import Button from '@/components/button';
 import Card from '@/components/card';
 import Loading from '@/components/loading';
 import { useGetNowWeather } from '@/hooks/weatherCustomHooks';
+import { NowWeatherData } from '@/types/weather';
 import { useRouter } from 'next/router';
-
-export interface WeatherData {
-  area: string;
-  forecast: string;
-}
 
 export default function Now() {
   const router = useRouter();
@@ -36,7 +32,7 @@ export default function Now() {
               {isLoading ? (
                 <Loading />
               ) : (
-                data?.items.map((data: WeatherData, index: number) => (
+                data?.items.map((data: NowWeatherData, index: number) => (
                   <Card
                     testId="now-card"
                     cardType="weather"

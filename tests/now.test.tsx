@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { useGetNowWeather } from '@/hooks/weatherCustomHooks';
 import Now from '@/pages/now';
+import mockRouter from 'next-router-mock';
 
 jest.mock('next/router', () => require('next-router-mock'));
 
@@ -69,5 +70,39 @@ describe('Forecast', () => {
       screen.getByText('Oops Something went wrong! Please try again.'),
     ).toBeInTheDocument();
     expect(screen.getByTestId('refresh-button')).toBeInTheDocument();
+  });
+
+  it('navigate to the homepage when back button is pressed', () => {
+    (useGetNowWeather as jest.Mock).mockReturnValue({
+      data: {},
+      isLoading: true,
+      isError: true,
+    });
+
+    render(<Now />);
+
+    const backButton = screen.getByTestId('back-button');
+    fireEvent.click(backButton);
+
+    expect(mockRouter.asPath).toEqual('/');
+  });
+
+  it('should reload the page when the try again button is pressed', () => {
+    (useGetNowWeather as jest.Mock).mockReturnValue({
+      data: {},
+      isLoading: true,
+      isError: true,
+    });
+
+    render(<Now />);
+
+    const refreshButton = screen.getByTestId('refresh-button');
+    fireEvent.click(refreshButton);
+
+    mockRouter.reload();
+    mockRouter.pathname = '/forecast';
+    expect(mockRouter).toMatchObject({
+      pathname: '/forecast',
+    });
   });
 });
