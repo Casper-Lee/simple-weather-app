@@ -28,7 +28,7 @@ jobs:
           node-version: 20.x
       - run: npm ci
       - run: npm run lint
-      - run: npm run test -- --runInBand
+      - run: npm run test -- --coverage --runInBand
     # - challenge: do things that you think is necessary
 
   deploy:
