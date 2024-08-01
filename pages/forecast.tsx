@@ -2,11 +2,8 @@ import Button from '@/components/button';
 import Card from '@/components/card';
 import Loading from '@/components/loading';
 import { useGetWeatherForecast } from '@/hooks/weatherCustomHooks';
+import { ForecastData } from '@/types/weather';
 import { useRouter } from 'next/router';
-export interface ForecastData {
-  date: string;
-  prediction: string;
-}
 
 export default function Forecast() {
   const router = useRouter();
@@ -35,7 +32,7 @@ export default function Forecast() {
               {isLoading ? (
                 <Loading />
               ) : (
-                data.items.map((data: ForecastData, index: number) => (
+                data?.items.map((data: ForecastData, index: number) => (
                   <Card
                     testId="forecast-card"
                     cardType="forecast"
