@@ -3,6 +3,7 @@ import Card from '@/components/card';
 import Loading from '@/components/loading';
 import { useGetWeatherForecast } from '@/hooks/weatherCustomHooks';
 import { ForecastData } from '@/types/weather';
+import { formatDate } from '@/utils/datetime';
 import { useRouter } from 'next/router';
 
 export default function Forecast() {
@@ -37,7 +38,10 @@ export default function Forecast() {
                     testId="forecast-card"
                     cardType="forecast"
                     key={index}
-                    data={data}
+                    data={{
+                      ...data,
+                      date: formatDate(data.date),
+                    }}
                     additionalClassNames="flex-1"
                   />
                 ))
