@@ -76,9 +76,7 @@ Improved the UI/UX for better usability.
 1. To run the test to see the coverage
 - `npm run test -- --coverage`
 
-## Improvements
-Here are some improvements that could be made:
-
+## Here are some improvements that i could implement:
 1. Make the website mobile responsive.
 2. Handle the display of weather cards if there are more than four.
 3. Add more negative scenarios for unit testing.
