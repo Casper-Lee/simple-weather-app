@@ -79,7 +79,7 @@ Improved the UI/UX for better usability.
 <attached image here>
 
 ## Improvements
-Here are some potential improvements that could be made:
+Here are some improvements that could be made:
 
 1. Make the website mobile responsive.
 2. Handle the display of weather cards if there are more than four.
