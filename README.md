@@ -76,8 +76,6 @@ Improved the UI/UX for better usability.
 1. To run the test to see the coverage
 - `npm run test -- --coverage`
 
-<attached image here>
-
 ## Improvements
 Here are some improvements that could be made:
 
